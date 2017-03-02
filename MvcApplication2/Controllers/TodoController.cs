@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication2.Controllers
 {
+    [Authorize]
     public class TodoController : Controller
     {
         static private List<Todo> maTodoList = new List<Todo>()
@@ -18,11 +19,13 @@ namespace MvcApplication2.Controllers
         //
         // GET: /Todo/
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(maTodoList);
         }
 
+        [Authorize]
         public ActionResult Edit(int id = 0)
         {
             if (id == 0)
@@ -36,6 +39,7 @@ namespace MvcApplication2.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(Todo item)
         {
             var result = maTodoList.Where(x => x.TodoID == item.TodoID);

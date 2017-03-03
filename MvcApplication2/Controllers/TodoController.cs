@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class TodoController : Controller
     {
         static private List<Todo> maTodoList = new List<Todo>()
@@ -25,7 +25,7 @@ namespace MvcApplication2.Controllers
             return View(maTodoList);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Edit(int id = 0)
         {
             if (id == 0)
@@ -39,12 +39,20 @@ namespace MvcApplication2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public ActionResult Edit(Todo item)
         {
+            //var item = new Todo();
+            //item.TodoID = int.Parse(Request["TodoID"].ToString());
+            //item.Titre = Request["Titre"].ToString();
+            //item.Etat = bool.Parse(Request.Form.GetValues("Etat")[0].ToString());
+
+
+
             var result = maTodoList.Where(x => x.TodoID == item.TodoID);
             result.FirstOrDefault().Titre = item.Titre;
-            return RedirectToAction("Index");
+
+            return View(item);
         }
     }
 }

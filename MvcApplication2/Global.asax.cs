@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcApplication2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,8 @@ namespace MvcApplication2
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            ModelBinders.Binders.Add(typeof(Todo), new TodoModelBinder());
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MvcApplication2
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            ModelBinders.Binders.Add(typeof(Todo), new TodoModelBinder());
+            //ModelBinders.Binders.Add(typeof(Todo), new TodoModelBinder());
         }
     }
 }

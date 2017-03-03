@@ -192,6 +192,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Todo.cs" />
     <Compile Include="Models\TodoModelBinder.cs" />
+    <Compile Include="Models\TodoValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

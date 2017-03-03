@@ -35,13 +35,27 @@ namespace MvcApplication2.Controllers
             if (result.Count() <= 0)
                 return RedirectToAction("Index");
 
-            return View(result.FirstOrDefault()); 
+            var todo = result.FirstOrDefault();
+            if (todo != null)
+                todo.CreatedDate = DateTime.Now;
+            
+            return View(todo); 
         }
 
         [HttpPost]
+        // HttpPost = Event levé lors de la soumission du formulaire
         //[Authorize]
         public ActionResult Edit(Todo item)
         {
+            // Test des validations annotations dans le modèle
+            if (ModelState.IsValid)
+            {
+                var result = maTodoList.Where(x => x.TodoID == item.TodoID);
+                var todo = result.FirstOrDefault();
+                if (todo != null)
+                    todo.Titre = item.Titre;
+            }
+
             //var item = new Todo();
             //item.TodoID = int.Parse(Request["TodoID"].ToString());
             //item.Titre = Request["Titre"].ToString();
@@ -49,8 +63,7 @@ namespace MvcApplication2.Controllers
 
 
 
-            var result = maTodoList.Where(x => x.TodoID == item.TodoID);
-            result.FirstOrDefault().Titre = item.Titre;
+            
 
             return View(item);
         }
